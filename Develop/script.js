@@ -30,16 +30,16 @@ if (upperCase === true){
 
   console.log(selections)
 
-
+let randPass = '';
   
 for (let i = 0; i<pswdLength; i++){
   var randomIndex = Math.floor(Math.random()* selections.length)
-  password += selections[randomIndex]
+  randPass += selections[randomIndex]
 }
   
 
 
- return;
+ return randPass;
 }
 
 // Get references to the #generate element
