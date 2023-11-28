@@ -12,11 +12,8 @@ function generatePassword() {
   );
   if (pswdLength >= 8 && pswdLength <= 128) {
   } else {
-    window.alert("please enter a valid number of characters (maximum is 128)");
-    pswdLength = window.prompt(
-      "How many characters would you like your password to have? (minimum 8)"
-    );
-    return "Please refresh the page and read carefully ;)";
+    window.alert("please enter a valid number between 8-128");
+    return 'Please Try Again';
   }
   var lowerCase = window.confirm(
     "Would you like to include lowercase letters?"
@@ -39,24 +36,21 @@ function generatePassword() {
   var numbs = window.confirm("Would you like to include numbers?");
   if (numbs === true) {
     selections += numbers;
-  }; if (
-      lowerCase === false &&
-      upperCase === false &&
-      specialChar === false &&
-      numbs === false
+  }; if (!lowerCase && !upperCase && !specialChar && !numbs
   ) {
-      window.alert("please pick at lease one character type.");
-      generatePassword();
-  };
+      window.alert("please pick at lease one character type. Try again");
+      return 'Please Try Again';
+  } else {
+    let randomPassword = "";
 
-  let randomPassword = "";
+    for (let i = 0; i < pswdLength; i++) {
+      var randomIndex = Math.floor(Math.random() * selections.length);
+      randomPassword += selections[randomIndex];
+    }
+  
+    return randomPassword;
 
-  for (let i = 0; i < pswdLength; i++) {
-    var randomIndex = Math.floor(Math.random() * selections.length);
-    randomPassword += selections[randomIndex];
   }
-
-  return randomPassword;
 }
 
 // Get references to the #generate element
