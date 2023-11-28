@@ -1,45 +1,54 @@
 // Assignment code here
+const alphabet = "abcdefghijklmnopqrstuvwxyz";
+const alphabetCap = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const numbers = "0123456789";
+const special = "!#$%&()*+-:;<=>?@^_|~";
 
+let selections = "";
 
-function generatePassword(){
-  const alphabet = "abcdefghijklmnopqrstuvwxyz";
-  const alphabetCap = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  const numbers = "0123456789";
-  const special = "!#$%&()*+-:;<=>?@^_|~";
-
-  let selections = '';
-
-  var pswdLength = window.prompt("How many characters would you like your password to have? (minimum 8)");
-
-  var lowerCase = window.confirm("Would you like to include lowercase letters?");
-if (lowerCase === true){
-  selections += alphabet
-}
-  var upperCase = window.confirm("Would you like to include uppercase letters?");
-if (upperCase === true){
-  selections += alphabetCap
-}
-  var specialChar = window.confirm("Would you like to include special characters?");
-  if (specialChar === true){
-    selections += special
+function generatePassword() {
+  var pswdLength = window.prompt(
+    "How many characters would you like your password to have? (minimum 8)"
+  );
+  if (pswdLength >= 8 && pswdLength <= 128) {
+  } else {
+    window.alert("please enter a valid number of characters (maximum is 128)");
+    pswdLength = window.prompt(
+      "How many characters would you like your password to have? (minimum 8)"
+    );
+    return "Please refresh the page and read carefully ;)";
+  }
+  var lowerCase = window.confirm(
+    "Would you like to include lowercase letters?"
+  );
+  if (lowerCase === true) {
+    selections += alphabet;
+  }
+  var upperCase = window.confirm(
+    "Would you like to include uppercase letters?"
+  );
+  if (upperCase === true) {
+    selections += alphabetCap;
+  }
+  var specialChar = window.confirm(
+    "Would you like to include special characters?"
+  );
+  if (specialChar === true) {
+    selections += special;
   }
   var numbs = window.confirm("Would you like to include numbers?");
-  if (lowerCase === true){
-    selections += numbers
+  if (numbs === true) {
+    selections += numbers;
   }
 
-  console.log(selections)
+  let randomPassword = "";
 
-let randPass = '';
-  
-for (let i = 0; i<pswdLength; i++){
-  var randomIndex = Math.floor(Math.random()* selections.length)
-  randPass += selections[randomIndex]
-}
-  
+  for (let i = 0; i < pswdLength; i++) {
+    var randomIndex = Math.floor(Math.random() * selections.length);
+    randomPassword += selections[randomIndex];
+  }
 
-
- return randPass;
+  return randomPassword;
 }
 
 // Get references to the #generate element
@@ -47,15 +56,11 @@ var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-
-var password = generatePassword();
-
-  
+  var password = generatePassword();
 
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-
 }
 
 // Add event listener to generate button
