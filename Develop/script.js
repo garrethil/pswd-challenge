@@ -39,7 +39,15 @@ function generatePassword() {
   var numbs = window.confirm("Would you like to include numbers?");
   if (numbs === true) {
     selections += numbers;
-  }
+  }; if (
+      lowerCase === false &&
+      upperCase === false &&
+      specialChar === false &&
+      numbs === false
+  ) {
+      window.alert("please pick at lease one character type.");
+      generatePassword();
+  };
 
   let randomPassword = "";
 
